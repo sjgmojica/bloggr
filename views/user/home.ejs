@@ -1,0 +1,27 @@
+<div class="container" style="padding:50px 15px">
+    <div class="row">
+        <div class="col-md-3" id="leftCol">
+            <div class="well"> 
+                <ul class="nav nav-stacked" id="sidebar">
+                    <li><h3><%= req.session.user.firstname %></h3></li>
+                    <li><%- req.session.user.desc %></li>
+                    <li><a href="/user/edit/<%- req.session.user.id %>">Edit Profile</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="row">
+                <!--LOOP starts herere-->
+                    <div class="col-sm-6">
+                        <div class="card card-block">
+                            <h3 class="card-title">TITLE</h3>
+                            <p class="card-text">BODY</p>
+                            <p class="card-text">DATE</p>
+                            <p class="card-text">AUTHOR</p>
+                        </div>
+                    </div>
+                <!--Loop end herere-->
+            </div>    
+        </div>
+    </div>
+</div>

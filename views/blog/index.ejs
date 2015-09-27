@@ -1,0 +1,34 @@
+<div class="container">
+   <div class="container">
+        <% if (req.session.flash) { %>
+            <div class="col-sm-4 alert alert-info" role="alert">
+            <b> <%= req.session.flash.message %> </b>
+            </div>
+         <% } %>   
+    </div>
+    <div class="row">
+        <div class="col-sm-2">
+            <a href="/blog/add", class="btn btn-primary btn-md btn-block"><span class="glyphicon glyphicon-plus"></span>Add Blog</a>
+        </div>
+    </div>
+    <div class="row">
+        <!--LOOP starts herere-->
+        <% blogs.forEach(function(blog) { %>
+            <div class="col-sm-4">
+                <div class="card card-block">
+                    <h3 class="card-title"><%= blog.title %></h3>
+                    <p class="card-text"><%= user.createdAt%></p>
+                    <p class="card-text"><%= user.firstname %></p>
+                    <p class="card-text"><%= blog.body %></p>
+                </div>
+                <% if (req.session.user.id == blog.userId) { %>
+                    <div class="pull-right">
+                        <a href="/blog/edit/<%= user.id %>"><span class="glyphicon glyphicon-pencil"></span></a></li>
+                        <a href="/blog/delete/<%= user.id %>"><span class="glyphicon glyphicon-trash"></span></a></li>
+                    </div>
+                <% } %>
+            </div>
+        <% }); %>
+        <!--Loop end herere-->
+    </div>    
+</div>

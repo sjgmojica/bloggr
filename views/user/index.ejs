@@ -1,0 +1,48 @@
+<div class="container" style="padding:50px 15px">
+    <div class="row">
+        <div class="col-md-3" id="leftCol">
+            <div class="well"> 
+                <ul class="nav nav-stacked" id="sidebar">
+                    <li><h3><%= req.session.user.firstname %></h3></li>
+                    <li><%- req.session.user.desc %></li>
+                    <li><a href="/user/edit/<%- req.session.user.id %>"><span class="glyphicon glyphicon-user"></span>Edit Profile</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="row">
+                <!--LOOP starts herere-->
+                <% blogs.forEach(function(blog) { %>
+                    <% if(req.session.user.id == blog.userId) { %>
+                        <div class="col-sm-6">
+                            <div class="card card-block">
+                                <h3 class="card-title"><%= blog.title %></h3>
+                                <p class="card-text"><%= user.createdAt%></p>
+                                <p class="card-text"><%= user.firstname %></p>
+                                <p class="card-text"><%= blog.body %></p>
+                            </div>
+                            <div class="pull-right">
+                                <a href="/blog/edit/<%= user.id %>"><span class="glyphicon glyphicon-pencil"></span></a></li>
+                                <a href="/blog/delete/<%= user.id %>"><span class="glyphicon glyphicon-trash"></span></a></li>
+                            </div>
+                        </div>
+                    <% } else { %>
+                        <% friends.forEach(function(friend) { %>
+                            <% if (friend.id != req.session.user.id && blog.userId == friend.id) { %>
+                                <div class="col-sm-6">
+                                    <div class="card card-block">
+                                        <h3 class="card-title"><%= blog.title %></h3>
+                                        <p class="card-text"><%= friend.createdAt%></p>
+                                        <p class="card-text"><%= friend.firstname %></p>
+                                        <p class="card-text"><%= blog.body %></p>
+                                    </div>
+                                </div>
+                            <% } %>
+                        <% }); %>            
+                    <% } %>        
+                <% }); %>
+                <!--Loop end herere-->
+            </div>    
+        </div>
+    </div>
+</div>

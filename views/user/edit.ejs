@@ -1,0 +1,54 @@
+<div class="container">
+    <div class="col-sm-4">
+        <h2>Update Profile</h2>
+    </div>
+</div>
+<!--
+<div class="container">
+    <% if (req.session.flash) { %>
+        <div class="col-sm-offset-2 col-sm-4">
+            <div class="col-sm-offset-2 col-sm-4 alert alert-info" role="alert">
+                <b> <%- req.session.flash.message %> </b>
+            </div>
+        </div>
+    <% } %>   
+</div>
+-->
+<div class="container">
+  <form class="form-horizontal" role="form" action="/user/update/<%= user.id %>" method="POST">
+
+    <div class="form-group">
+      <div class="col-sm-4">
+        <input type="text" class="form-control" value=<%= user.firstname %> name="firstname"/>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-4">          
+        <input type="text" class="form-control" value=<%= user.lastname %> name="lastname"/>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-4">
+        <textarea type= "text" class="form-control" rows="5" name="desc"><%= user.desc %></textarea>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-4">
+        <input type="email" class="form-control" value=<%= user.email %> name="email"/>
+        <div class="help-block with-errors"></div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-4">          
+        <input type="text" class="form-control" value=<%= user.password %> name="password"/>
+      </div>
+    </div>
+    <div class="form-group">        
+      <div class="col-sm-4">
+          <!--<a href="/user/update/"<%= user.id %>>Update</a-->
+          <input type="submit" value="Save" class="btn btn-lg btn-primary btn-block"/>
+          <input type="hidden" name="_csrf" value="<%= _csrf %>"/>
+      </div>
+    </div>
+  </form>
+</div>
