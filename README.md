@@ -1,2 +1,3 @@
 # bloggr
-blogger web application that written in sailsjs
+
+a [Sails](http://sailsjs.org) application
