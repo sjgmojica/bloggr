@@ -1,49 +1,36 @@
-<div class="container">
-    <div class="col-sm-4 pull-right">
-        <h2>Create an Account</h2>
+<div>
+    <div class="modal-alert-signup" style="display:none;">
     </div>
-</div>
-<div class="container">
-    <% if (req.session.flash) { %>
-       <div class="col-sm-4 pull-right alert alert-info" role="alert">
-          <b> <%= req.session.flash.message %> </b>
+    <form class="form-horizontal" id="sgForm" role="form" action="/register" method="POST">
+        <div class="form-group">
+            <div class="col-md-12">
+                <input type="text" class="form-control" name="firstname" placeholder="Firstname" required>
+            </div>
         </div>
-    <% } %>   
+        <div class="form-group">
+            <div class="col-md-12">          
+                <input type="text" class="form-control" name="lastname" placeholder="Lastname" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-12">
+                <textarea type="text" class="form-control" name="desc" placeholder="Description", required></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-12">
+                <input type="email" class="form-control" name="email" placeholder="Email" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-12">          
+                <input type="password" class="form-control" id="inputPassword" name="password" placeholder="Password" required>
+            </div>
+        </div>
+        <div class="form-group">        
+            <div class="col-md-12">
+                <button type="submit" id="sgButton" class="btn btn-primary btn-md btn-block">Signup</button>
+            </div>
+        </div>
+    </form>
 </div>
-<div class="container">
-  <form class="form-horizontal" role="form" action="/register" method="POST">
-    <div class="form-group">
-      <div class="col-sm-4 pull-right">
-        <input type="text" class="form-control" name="firstname" placeholder="e.g. Sarah">
-      </div>
-    </div>
-    <div class="form-group">
-      <div class="col-sm-4 pull-right">          
-        <input type="text" class="form-control" name="lastname" placeholder="e.g. Mojica", required>
-      </div>
-    </div>
-    <div class="form-group">
-      <div class="col-sm-4 pull-right">
-        <textarea type="text" class="form-control" name="desc" placeholder="e.g. Food Lover.Photography", required></textarea>
-      </div>
-    </div>
-    <div class="form-group">
-      <div class="col-sm-4 pull-right">
-        <input type="email" class="form-control" name="email" placeholder="e.g. sarah@chikka.com" required>
-        <div class="help-block with-errors"></div>
-      </div>
-    </div>
-    <div class="form-group">
-      <div class="col-sm-4 pull-right">          
-        <input type="password" class="form-control" name="password" placeholder="Minimum of 6 characters">
-      </div>
-    </div>
-    <div class="form-group">        
-      <div class="col-sm-4 pull-right">
-        <button type="submit" class="btn btn-primary btn-md btn-block">Create Account</button>
-      </div>
-    </div>
-  </form>
-</div>
-
-
