@@ -1,30 +1,18 @@
-<div class="container">
+<div class="container"  style="padding-top: 50px;">
     <div class="col-sm-4">
-        <h2>Update Profile</h2>
+        <h4>Edit Profile</h4>
     </div>
 </div>
-<!--
 <div class="container">
-    <% if (req.session.flash) { %>
-        <div class="col-sm-offset-2 col-sm-4">
-            <div class="col-sm-offset-2 col-sm-4 alert alert-info" role="alert">
-                <b> <%- req.session.flash.message %> </b>
-            </div>
-        </div>
-    <% } %>   
-</div>
--->
-<div class="container">
-  <form class="form-horizontal" role="form" action="/user/update/<%= user.id %>" method="POST">
-
+  <form class="form-horizontal" role="form" action="/user/update/<%= user.id %>" method="POST" id="updateForm">
     <div class="form-group">
       <div class="col-sm-4">
-        <input type="text" class="form-control" value=<%= user.firstname %> name="firstname"/>
+        <input type="text" class="form-control" value="<%= user.firstname %>" name="firstname"/>
       </div>
     </div>
     <div class="form-group">
       <div class="col-sm-4">          
-        <input type="text" class="form-control" value=<%= user.lastname %> name="lastname"/>
+        <input type="text" class="form-control" value="<%= user.lastname %>" name="lastname"/>
       </div>
     </div>
     <div class="form-group">
@@ -34,21 +22,47 @@
     </div>
     <div class="form-group">
       <div class="col-sm-4">
-        <input type="email" class="form-control" value=<%= user.email %> name="email"/>
+        <input type="email" class="form-control" value="<%= user.email %>" name="email"/>
         <div class="help-block with-errors"></div>
       </div>
     </div>
     <div class="form-group">
       <div class="col-sm-4">          
-        <input type="text" class="form-control" value=<%= user.password %> name="password"/>
+        <input type="text" class="form-control" value="<%= user.password %>" name="password"/>
       </div>
     </div>
     <div class="form-group">        
       <div class="col-sm-4">
-          <!--<a href="/user/update/"<%= user.id %>>Update</a-->
-          <input type="submit" value="Save" class="btn btn-lg btn-primary btn-block"/>
-          <input type="hidden" name="_csrf" value="<%= _csrf %>"/>
+          <input type="submit" value="Update" id="updateButton" class="btn btn-sm btn-primary btn-block"/>
       </div>
     </div>
   </form>
 </div>
+
+<script>
+$("#updateButton").on("click", function (evt) {
+  // override default method of button which is post method/to submit the form
+  evt.preventDefault(); 
+  var param = {};
+
+  var send_data = $("#updateForm").serializeArray();
+  for(var i=0; i < send_data.length; i++) {
+    var record = send_data[i];
+    param[record.name] = record.value;
+  }
+  console.log(param);
+  var result = $.ajax({
+    method: "PUT",
+    type: "JSON",
+    url: "/user/update/<%= user.id %>",
+    data: param,
+    success: function(response) {
+      window.location = '/user';
+    },
+
+    error: function(response) {
+      console.log("Error");
+    }
+  });
+});
+</script>
