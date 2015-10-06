@@ -12,8 +12,8 @@ module.exports = {
     attributes: {
         title:{type:'string', required:true},
         body: {type:'string', required:true},
-        userId: {type:'string'}
-        //date: {type: 'DATETIME', defaultsTo: new Date()}
+        dt_post: {type:'string', required:true},
+        userId: {type:'string'}    
     }
 };
 
