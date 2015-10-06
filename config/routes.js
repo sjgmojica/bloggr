@@ -33,41 +33,25 @@ module.exports.routes = {
   ***************************************************************************/
   
   /* == index, signup, login ==*/
-  //'get /': { view: 'index' },
-  'get /': { view: 'index' },
-  'get /register': 'UserController.signup',
-  'get /login': 'UserController.login',
-  'post /register': 'UserController.create',
-  'post /login': 'UserController.processLogin',
-  'get /user': 'UserController.edit',
-  'put /user': 'UserController.update',
-  'get /user': 'UserController.index',
-  'get /logout': 'UserController.logout',
+  'get /'                   : { view: 'index' },
+  //'get /register'           : 'UserController.signup',
+  //'get /login'              : 'UserController.login',
+  'get /register/success'   : { view: 'user/success'},
+  'post /register'          : 'UserController.create',
+  'post /login'             : 'UserController.processLogin',
+  'get /user/edit/:id'      : 'UserController.edit',
+  'put /user/update/:id'    : 'UserController.update',
+  'get /home'               : 'UserController.index',
+  'get /logout'             : 'UserController.logout',
 
-  'get /blog/add': 'BlogController.add',
-  'post /blog': 'BlogController.create',
-  'get /blog': 'BlogController.edit',
-  'get /blog': 'BlogController.index',
+ /* == blog ==*/
+  //'get /blog/add'           : 'BlogController.add',
+  'post /blog/create'       : 'BlogController.create',
+  'get /blog/edit/:id'      : 'BlogController.edit',
+  'put /blog/update/:id'    : 'BlogController.update',
+  'delete /blog/delete/:id' : 'BlogController.delete',
+  'get /blog'               : 'BlogController.index',
   
-  //'post /blog': ''
-  /*
-  'get /login': { view: 'user/login' },
-  'post /login': 'UserController.processLogin',
-  'get /register': { view: 'user/signup' },
-  'post /register': 'UserController.processSignup',
-  'get /home': { view: 'user/home' },
-  'get /logout': 'UserController.processLogout',
-  'get /user/edit/:id': 'UserController.editProfile',
-  'put /user/edit/:id': 'UserController.updateProfile',
-
-  /* == all about blog ==*/
-  /*
-  'get /blog': 'BlogController.index',
-  'get /blog/add': { view: 'blog/addblog'},
-  */
-  //'post /blog/add'
-  //'post /blog/add': 
-
   /***************************************************************************
   *                                                                          *
   * Custom routes here...                                                    *
