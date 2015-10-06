@@ -80,19 +80,5 @@ module.exports = {
    * 'development' environment.                                              *
    ***************************************************************************/
 
-   //environment: process.env.NODE_ENV || 'development'
-   adapters : {
-      'default' : 'mongo',
-
-      bloggrMongoDb: {
-        adapter: 'sails-mongo',
-        host: 'localhost', 
-        port: 27017, 
-        user: '', 
-        password: '', 
-        database: 'bloggrDB',
-
-        schema: true
-      }
-   }
+   environment: process.env.NODE_ENV || 'development'
 };
