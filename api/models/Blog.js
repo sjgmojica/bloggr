@@ -6,14 +6,13 @@
 */
 
 module.exports = {
-	schema: true,
-    connection: 'someMongodbServer',
-    tableName: 'blogs',
-    attributes: {
-        title:{type:'string', required:true},
-        body: {type:'string', required:true},
-        dt_post: {type:'string', required:true},
-        userId: {type:'string'}    
-    }
+  schema: true,
+  tableName: 'blogs',
+  attributes: {
+    title:{type:'string', required:true},
+    body: {type:'string', required:true},
+    dt_post: {type:'string', required:true},
+    userId: {type:'string'}    
+  }
 };
 
