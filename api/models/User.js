@@ -6,15 +6,83 @@
 */
 
 module.exports = {
-  schema: true,
-  tableName: 'users',
+  //schema: true,
+  //tableName: 'users',
+  /*
   attributes: {
-    firstname:{type:'string', required:true},
-    lastname: {type:'string', required:true},
-    desc: {type:'string'},
-    join_dt: {type:'string', required:true},
-    join_tm: {type:'string', required:true},
-    email: {type:'email', required:true, unique: true},
-    password: {type:'string'}
+    firstname:{
+      type:'string', 
+      required:true
+    },
+    
+    lastname: {
+      type:'string', 
+      required:true
+    },
+    
+    desc: {
+      type:'string',
+      required: true
+    },
+    
+    join_dt: {
+      type:'string', 
+      required:true
+    },
+    
+    join_tm: {
+      type:'string', 
+      required:true
+    },
+    
+    email: {
+      type:'email', 
+      required:true, 
+      //unique: true
+    },
+    
+    password: {
+      type:'string', 
+      required:true
+    }
+  } */
+
+  attributes: {
+    email: {
+      type: "email",
+      required: true,
+      unique: true
+    },
+    
+    password: {
+      type: "string",
+      required: true
+      //maxLength: 6;
+    },
+
+    firstname:{
+      type: 'string', 
+      required: true
+    },
+
+    lastname: {
+      type: "string",
+      required: true
+    },
+
+    desc: {
+      type: "string",
+      required: true
+    },
+
+    join_dt: {
+      type:'string', 
+      required:true
+    },
+    
+    join_tm: {
+      type:'string', 
+      required:true
+    },
   }
 };
