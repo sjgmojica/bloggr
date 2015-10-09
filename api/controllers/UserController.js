@@ -6,7 +6,7 @@
  */
 var moment  = require("moment");
 var date    = new Date();
-var frmt_dt = moment(date).format('MMMM DD YYYY');
+var frmt_dt = moment(date).format('MMMM-DD-YYYY');
 var frmt_tm = moment(date).format('h:mm:ss');
 
 module.exports = {
