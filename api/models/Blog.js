@@ -6,13 +6,28 @@
 */
 
 module.exports = {
-  schema: true,
-  tableName: 'blogs',
+  //schema: true,
+  //tableName: 'blogs',
   attributes: {
-    title:{type:'string', required:true},
-    body: {type:'string', required:true},
-    dt_post: {type:'string', required:true},
-    userId: {type:'string'}    
+    title:{
+      type:'string', 
+      required:true
+    },
+
+    body: {
+      type:'string', 
+      required:true
+    },
+
+    dt_post: {
+      type:'string', 
+      required:true
+    },
+    
+    userId: {
+      type:'string',
+      required: true
+    }  
   }
 };
 
