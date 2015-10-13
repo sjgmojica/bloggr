@@ -11,6 +11,7 @@ var frmt_tm = moment(date).format('h:mm:ss');
 
 module.exports = {
   create: function (req, res) {
+    console.log(req.params.all());
     User.findOne({email: req.body.email}).exec(function (err, user) {
       if (err) {
         res.serverError();
@@ -44,12 +45,10 @@ module.exports = {
       } else if (user === undefined) {
         res.ok({error: true, message: "The email and password you entered did not match our records. Please double-check and try again."});
       } else {
-        if (!user) {
-          res.ok({error: true, message: "Invalid email or password"});
-        } else {
-          req.session.user = user;
-          res.redirect('/home');
-        }
+        req.session.user = user;
+        console.log("processlogin");
+        console.log(req.session);
+        res.redirect('/home');
       }
     });
   },
@@ -79,11 +78,13 @@ module.exports = {
       if (err) {
         return res.serverError(err);
       }
+      console.log(user);
       res.view({user: user});
     });
   },
 
   update: function (req, res) {
+    console.log(req.param("id"));
     var id = req.param("id", null);
     User.update({id: id},
       { firstname : req.body.firstname,
