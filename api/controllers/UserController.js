@@ -27,7 +27,8 @@ module.exports = {
             join_tm: frmt_tm,
             email: req.body.email,
             password: req.body.password
-          }, function userCreated (err){
+          }, function userCreated (err, user) {
+            console.log(user);
             if(err) {
               return res.serverError(err);
             }
@@ -84,7 +85,6 @@ module.exports = {
   },
 
   update: function (req, res) {
-    console.log(req.param("id"));
     var id = req.param("id", null);
     User.update({id: id},
       { firstname : req.body.firstname,
@@ -97,6 +97,7 @@ module.exports = {
         return res.serverError(err);
       } 
       req.session.user = user[0];
+      console.log(req.session.user);
       res.ok({});
     });
   }

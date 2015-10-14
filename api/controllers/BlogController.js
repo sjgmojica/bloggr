@@ -27,14 +27,14 @@ module.exports = {
       userId: req.session.user.id
     }, function blogCreated (err, blog){
       if(err) {
-        return res.redirect('/blog');
+        return res.redirect("/blog");
       }
-      res.redirect('/blog');
+      res.redirect("/blog");
     });
   },
 
   edit: function (req, res) {
-    Blog.findOne(req.param('id'), function foundBlog (err, blog) {
+    Blog.findOne(req.param("id"), function foundBlog (err, blog) {
       if (err) {
         return res.serverError();
       }
@@ -56,10 +56,13 @@ module.exports = {
   },
 
   delete: function (req, res) {
-    var id = req.param('id', null);
-    Blog.findOne(id).exec(function(err, blog) {
-      blog.destroy(function(err) {
-        res.redirect('/user');
+    var id = req.param("id", null);
+    Blog.findOne(id).exec(function (err, blog) {
+      blog.destroy(function (err) {
+        if (err) {
+          return res.serverError();
+        }
+        res.redirect("/user");
       });
     });
   }  
