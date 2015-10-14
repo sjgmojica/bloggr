@@ -5,17 +5,6 @@ this is may profile edit page
     </div>
 </div>
 <p><%- put %></p>
-<!--
-<div class="container">
-    <% if (req.session.flash) { %>
-        <div class="col-sm-offset-2 col-sm-4">
-            <div class="col-sm-offset-2 col-sm-4 alert alert-info" role="alert">
-                <b> <%- req.session.flash.message %> </b>
-            </div>
-        </div>
-    <% } %>   
-</div>
--->
 <div class="container">
   <form class="form-horizontal" role="form" action="/user/update/<%= user.id %>" method="POST">
     <%if (put) { %>
