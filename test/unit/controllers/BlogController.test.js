@@ -1,40 +1,20 @@
 require("sails-test-helper");
 
 describe(TEST_NAME, function() {
+  
+  var user = {
+    id : 1,
+    email : "sa@chikka.com",
+    password : "123456",
+    firstname: "zah",
+    lastname: "mojica",
+    desc: "photography"
+  }
 
-  // -- signup
-  describe("POST create", function() {
-    it("should be successful in creating user", function (done) {
-      var user = factory.build("user1");
-      request.post("/register")
-        .set("ACCEPT", "application/json")
-        .send(user)
-        .expect(200)
-        .end(function (err, res) {
-          expect(err).to.not.exist;
-          expect(res).to.exist;
-          done();
-        });
-    });
+  before(function(done) {
+    signIn(user, done);
   });
-
-  // -- login
-  describe("POST processLogin", function() {
-    it("should be successful login", function (done) {
-      var user = factory.build("user1");
-      request.post("/login")
-        .send(user)
-        .expect(302)
-        .end(function (err, res) {
-          expect(err).to.not.exist;
-          expect(res).to.exist;
-          expect(res.redirect).to.be.eq(true);
-          expect(res.clientError).to.be.eq(false);
-          done();
-        });
-    });
-  });
-
+  
   // -- new blog
   describe("POST create", function() {
     it("should be successful in creating new blog", function (done) {
@@ -51,7 +31,7 @@ describe(TEST_NAME, function() {
           done();
         });
     });
-  
+     
     it("should be error in creating new blog", function (done) {
       var blog = factory.build("blog2");
       request.post("/blog/create")
@@ -127,6 +107,22 @@ describe(TEST_NAME, function() {
           expect(err).to.not.exist;
           expect(res).to.exist;
           expect(res.headers.location).to.be.eq("/user");
+          expect(res.redirect).to.be.eq(true);
+          expect(res.clientError).to.be.eq(false);
+          done();
+        });
+    });
+  });
+
+  // -- logout
+  describe("GET logout", function() {
+    it("should be successful logout", function (done) {
+      request.get("/logout")
+        .expect(302)
+        .end(function (err, res) {
+          expect(err).not.to.exist;
+          expect(res).to.exist;
+          expect(res.header.location).to.be.eq("/");
           expect(res.redirect).to.be.eq(true);
           expect(res.clientError).to.be.eq(false);
           done();
