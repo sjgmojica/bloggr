@@ -2,32 +2,51 @@
 require("sails-test-helper");
 
 describe(TEST_NAME, function() {
+  // -- main page
   describe("GET index", function() {
-    it("should be successful", function(done) {
+    it("should render main page", function(done) {
       request.get("/")
-        .expect(200, done);
-    });
-  });
-
-  describe("POST create", function() {
-    it("should be successful creating user", function (done) {
-      var user = factory.build("user1");
-      request.post("/register")
-        .send(user)
         .expect(200)
         .end(function (err, res) {
+          expect(err).not.to.exist;
           expect(res).to.exist;
-          expect(err).to.not.exist;
+          expect(res.redirect).to.be.eq(false);
+          expect(res.clientError).to.be.eq(false);
           done();
         });
     });
+  });
+  
+  // -- signup/registration
+  describe("POST create", function() {
+    it("should be successful in creating user", function (done) {
+      var user = factory.build("user1");
+      request.post("/register")
+        .set("ACCEPT", "application/json")
+        .send(user)
+        .expect(200)
+        .end(function (err, res) {
+          expect(err).to.not.exist;
+          expect(res).to.exist;
+          done();
+        });
+    });
+
     it("should be redirect after successful registration", function (done) {
       request.get("/register/success")
-        .expect(200, done);
+        .expect(200)
+        .end(function (err, res) {
+          expect(err).not.to.exist;
+          expect(res).to.exist;
+          expect(res.redirect).to.be.eq(false);
+          expect(res.clientError).to.be.eq(false);
+          done();
+        });
     });
     it("email already exist", function (done) {
       var user = factory.build("user1");
       request.post("/register")
+        .set("ACCEPT", "application/json")
         .send(user)
         .expect(200)
         .end(function (err, res) {
@@ -75,6 +94,7 @@ describe(TEST_NAME, function() {
     });
   });
 
+  // -- login
   describe("POST processLogin", function() {
     it("should be successful login", function (done) {
       var user = factory.build("user1");
@@ -85,6 +105,8 @@ describe(TEST_NAME, function() {
           expect(err).to.not.exist;
           expect(res).to.exist;
           expect(res.headers.location).to.be.eq("/home");
+          expect(res.redirect).to.be.eq(true);
+          expect(res.clientError).to.be.eq(false);
           done();
         });
     });
@@ -104,12 +126,71 @@ describe(TEST_NAME, function() {
         });
     });
   });
-/*
+
+  // -- homepage after successful login
   describe("GET index", function() {
-    it("should return list of blogs", function (done) {
+    it("should render homepage with lists of blogs", function (done) {
       request.get("/home")
-        
+        .expect(200)
+        .end(function (err, res) {
+          expect(err).to.not.exist;
+          expect(res).to.exist;
+          expect(res.redirect).to.be.eq(false);
+          expect(res.clientError).to.be.eq(false);
+          done();
+        });
     });
   });
-*/
+
+  // -- edit profile
+  describe("GET edit", function() {
+    it("should render profile edit page with data", function (done) {
+      var user = factory.build("user1");
+      request.get("/user/edit/"+user.id)
+        .expect(200)
+        .end(function (err, res) {
+          expect(err).to.not.exist;
+          expect(res).to.exist;
+          expect(res.redirect).to.be.eq(false);
+          expect(res.clientError).to.be.eq(false);
+          done();
+        });     
+
+    });
+  });
+
+  // -- update profile
+  describe("PUT update", function() {
+    it("should be successful updating user profile", function (done) {
+      var user = factory.build("active_user3");
+      request.put("/user/update/"+user.id)
+        .set("ACCEPT", "application/json")
+        .send(user)
+        .expect(200)
+        .end(function (err, res) {
+          expect(err).to.not.exist;
+          expect(res).to.exist;
+          expect(res.redirect).to.be.eq(false);
+          expect(res.clientError).to.be.eq(false);
+          done();
+        });
+    });
+  });
+
+  // -- logout
+  describe("GET logout", function() {
+    it("should be successful logout", function (done) {
+      request.get("/logout")
+        .expect(302)
+        .end(function (err, res) {
+          expect(err).not.to.exist;
+          expect(res).to.exist;
+          expect(res.header.location).to.be.eq("/");
+          expect(res.redirect).to.be.eq(true);
+          expect(res.clientError).to.be.eq(false);
+          done();
+        });
+    });
+  });
+
 });
