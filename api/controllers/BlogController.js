@@ -25,7 +25,7 @@ module.exports = {
       body: req.body.blogBody,
       dt_post: frmt_dt,
       userId: req.session.user.id
-    }, function blogCreated (err, blog){
+    }, function blogCreated (err, blog) {
       if(err) {
         return res.redirect("/blog");
       }
@@ -49,7 +49,7 @@ module.exports = {
       body : req.body.blogBody
     }).exec(function updateBlog (err, blog) {
       if (err) {
-        return res.serverError(esrr);
+        return res.serverError(err);
       }
       res.ok({});
     });
