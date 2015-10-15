@@ -33,8 +33,5 @@ module.exports.models = {
     autoCreatedAt: false,
     autoUpdatedAt: false,
     connection: "master",
-    //connection: "master",
-    //autoCreatedAt: false,
-    //autoUpdatedAt: false,
     
 };
