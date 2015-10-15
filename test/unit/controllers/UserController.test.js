@@ -175,6 +175,23 @@ describe(TEST_NAME, function() {
           done();
         });
     });
+    
+    it("should be error in updating user profile", function (done) {
+      var user = factory.build("active_user1");
+      request.put("/user/update/"+user.id)
+        .set("ACCEPT", "application/json")
+        .send(user)
+        .expect(200)
+        .end(function (err, res) {
+          //console.log(res);
+          console.log(res.body.message);
+          expect(err).to.not.exist;
+          expect(res).to.exist;
+          expect(res.redirect).to.be.eq(false);
+          expect(res.clientError).to.be.eq(false);
+          done();
+        });
+    });
   });
 
   // -- logout

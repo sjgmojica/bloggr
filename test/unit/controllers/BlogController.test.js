@@ -66,7 +66,7 @@ describe(TEST_NAME, function() {
   // -- edit blog
   describe("GET edit", function() {
     it("should render blog edit page with data", function (done) {
-       var blog = factory.build("blog1");
+      var blog = factory.build("blog1");
       request.get("/blog/edit/"+blog.id)
         .expect(200)
         .end(function (err, res) {
@@ -82,7 +82,7 @@ describe(TEST_NAME, function() {
   // -- update blog
   describe("PUT update", function() {
     it("should be successful updating of blog", function (done) {
-      var blog = factory.build("blog3");
+      var blog = factory.build("blog2");
       request.put("/blog/update/"+blog.id)
         .set("ACCEPT", "application/json")
         .send(blog)
@@ -94,6 +94,12 @@ describe(TEST_NAME, function() {
           done();
         });
     });
+    /*
+    it("should be error if no title", function (done) {
+      var blog = factory.build("blog3");
+      request.put("")
+    });
+*/
   });
 
   // -- delete blog

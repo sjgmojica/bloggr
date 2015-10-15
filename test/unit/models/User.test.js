@@ -1,5 +1,5 @@
 require("sails-test-helper");
-/*
+
 describe(TEST_NAME, function() {
   describe("validation", function() {
     describe("#email", function() {
@@ -12,13 +12,10 @@ describe(TEST_NAME, function() {
       });
     });
   });
-});
-*/
 
-describe(TEST_NAME, function() {
+  // -- email
   describe("email validation", function() {
     describe("#email", function() {
-      /*
       it("should be a valid email address", function(done) {
         User.create({}, function(err, user) {
           expect(user).to.not.exist;
@@ -31,7 +28,7 @@ describe(TEST_NAME, function() {
           done();
         });
       });
-      */
+
       it("is required", function(done) {
         User.create({}, function(err, user) {
           expect(user).to.not.exist;
@@ -54,10 +51,8 @@ describe(TEST_NAME, function() {
       });
     });
   });
-});
 
-
-describe(TEST_NAME, function() {
+  // -- password
   describe("password validation", function() {
     describe("#password", function() {
       it("should be a valid password", function(done) {
@@ -94,9 +89,8 @@ describe(TEST_NAME, function() {
       });
     });
   });
-});
 
-describe(TEST_NAME, function() {
+  // -- firstname
   describe("firstname validation", function() {
     describe("#firstname", function() {
       it("should be a valid firstname", function(done) {
@@ -109,9 +103,8 @@ describe(TEST_NAME, function() {
       });
     });
   });
-});
 
-describe(TEST_NAME, function() {
+  // -- lastname
   describe("Lastname validation", function() {
     describe("#lastname", function() {
       it("should be a valid lastname", function(done) {
@@ -124,9 +117,8 @@ describe(TEST_NAME, function() {
       });
     });
   });
-});
-
-describe(TEST_NAME, function() {
+  
+  // -- description
   describe("Desc validation", function() {
     describe("#desc", function() {
       it("should be a valid desc", function(done) {
@@ -139,9 +131,8 @@ describe(TEST_NAME, function() {
       });
     });
   });
-});
 
-describe(TEST_NAME, function() {
+  // -- date
   describe("date validation", function() {
     describe("#join_dt", function() {
       it("should be a valid date", function(done) {
@@ -154,9 +145,8 @@ describe(TEST_NAME, function() {
       });
     });
   });
-});
 
-describe(TEST_NAME, function() {
+  // -- time
   describe("time validation", function() {
     describe("#join_tm", function() {
       it("should be a valid time", function(done) {
@@ -169,9 +159,8 @@ describe(TEST_NAME, function() {
       });
     });
   });
-});
 
-describe(TEST_NAME, function() {
+  // -- create user
   describe("create user", function(){
      describe(".create()", function() {
       it("should be successful", function(done) {
@@ -183,13 +172,11 @@ describe(TEST_NAME, function() {
       });
     });
   });
-});
 
-/* scenario: Sample duplicate entry
+  /* scenario: Sample duplicate entry
   catch error: 1) User create user .create() should be successful 2:
      Uncaught AssertionError: expected { Object (code, invalidAttributes, ...) } to not exist
-*/
-describe(TEST_NAME, function() {
+  */
   describe("create user", function(){
      describe(".create()", function() {
       it("should be successful 2", function(done) {
@@ -201,4 +188,5 @@ describe(TEST_NAME, function() {
       });
     });
   });
+
 });

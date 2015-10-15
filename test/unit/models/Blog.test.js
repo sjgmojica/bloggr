@@ -1,21 +1,22 @@
 require("sails-test-helper");
 
 describe(TEST_NAME, function() {
+
+  // -- title
   describe("title validation", function() {
     describe("#title", function() {
       it("should be a valid title", function(done) {
         Blog.create({}, function(err, blog) {
-            expect(blog).to.not.exist;
-            expect(err).to.exist;
-            expect(err).to.validate("title", "required");
-            done();
+          expect(blog).to.not.exist;
+          expect(err).to.exist;
+          expect(err).to.validate("title", "required");
+          done();
         });
-      })
+      });
     });
   });
-});
 
-describe(TEST_NAME, function() {
+  // -- body
   describe("blog body validation", function() {
     describe("#body", function() {
       it("should be a valid body", function(done) {
@@ -26,11 +27,19 @@ describe(TEST_NAME, function() {
           done();
         });
       });
+      
+      it("should be a valid body if not required", function(done) {
+        Blog.create({}, function(err, blog) {
+          expect(blog).to.not.exist;
+          expect(err).to.exist;
+          //expect(err).to.validate("body", "required");
+          done();
+        });
+      });
     });
   });
-});
 
-describe(TEST_NAME, function() {
+  // -- date and time
   describe("date and time validation", function() {
     describe("#dt_post", function() {
       it("should be a valid date and time", function(done) {
@@ -43,9 +52,8 @@ describe(TEST_NAME, function() {
       });
     });
   });
-});
 
-describe(TEST_NAME, function() {
+  // -- userid
   describe("userid validation", function() {
     describe("#userId", function() {
       it("should be a valid userId", function(done){
@@ -58,9 +66,8 @@ describe(TEST_NAME, function() {
       });
     });
   });
-});
 
-describe(TEST_NAME, function() {
+  // -- insert blog
   describe("create blog", function() {
     describe(".create()", function() {
       it("should be successful", function(done) {
@@ -72,4 +79,5 @@ describe(TEST_NAME, function() {
       });
     });
   });
+ 
 });
