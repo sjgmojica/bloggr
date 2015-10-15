@@ -1,6 +1,8 @@
 <div class="container"  style="padding-top: 50px;">
     <div class="col-sm-4">
-        <h4>Edit Profile</h4>
+      <h4>Edit Profile</h4>
+      <div id="errorMesssage">
+      </div>
     </div>
 </div>
 <div class="container">
@@ -33,7 +35,7 @@
     </div>
     <div class="form-group">        
       <div class="col-sm-4">
-          <input type="submit" value="Update" id="updateButton" class="btn btn-sm btn-primary btn-block"/>
+        <input type="submit" value="Update" id="updateButton" class="btn btn-sm btn-primary btn-block"/>
       </div>
     </div>
   </form>
@@ -57,9 +59,13 @@ $("#updateButton").on("click", function (evt) {
     url: "/user/update/<%= user.id %>",
     data: param,
     success: function(response) {
-      window.location = '/user';
+      if (response.error) {
+        //alert(response.message)
+        $("#errorMesssage").html(response.message).show();
+      } else {
+        window.location = "/user";
+      }
     },
-
     error: function(response) {
       console.log("Error");
     }
