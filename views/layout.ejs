@@ -25,40 +25,40 @@
   </head>
   <body>
     <nav class="navbar navbar-fixed-top">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="">Bloggr</a>
-            <div class="collapse navbar-collapse" id="myNavbar">
-                <% if (!req.session.user) { %>
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#" data-toggle="modal" data-target="#signupModal"><span class="glyphicon glyphicon-pencil"></span> Sign Up</a></li>
-                        <li><a href="#" data-toggle="modal" data-target="#loginModal"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-                    </ul>
-                <% } else { %>
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a href="/home"><span class="glyphicon glyphicon-home"></span> Home</a></li>
-                        <li><a href="/blog/add" data-toggle="modal" data-target="#blogModal"><span class="glyphicon glyphicon-pencil"></span> New Blog</a></li>
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user"></span> <%= req.session.user.firstname %><span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="/blog"><span class="glyphicon glyphicon-list-alt"></span> View Profile</a></li>
-                                <li><a href="/user/edit/<%- req.session.user.id %>"><span class="glyphicon glyphicon-user"></span>Edit Profile</a></li>
-                                <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                <% } %> 
-            </div>
+      <div class="container-fluid">
+        <a class="navbar-brand" href="">Bloggr</a>
+        <div class="collapse navbar-collapse" id="myNavbar">
+          <% if (!req.session.user) { %>
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="#" data-toggle="modal" data-target="#signupModal"><span class="glyphicon glyphicon-pencil"></span> Sign Up</a></li>
+              <li><a href="#" data-toggle="modal" data-target="#loginModal"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+            </ul>
+          <% } else { %>
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="/home"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+              <li><a href="/blog/add" data-toggle="modal" data-target="#blogModal"><span class="glyphicon glyphicon-pencil"></span> New Blog</a></li>
+              <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user"></span> <%= req.session.user.firstname %><span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a href="/blog"><span class="glyphicon glyphicon-list-alt"></span> View Profile</a></li>
+                  <li><a href="/user/edit/<%- req.session.user.id %>"><span class="glyphicon glyphicon-user"></span>Edit Profile</a></li>
+                  <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+                </ul>
+              </li>
+            </ul>
+          <% } %> 
         </div>
+      </div>
     </nav>
 
     <%- body %>
       <div class="container">
         <hr>
         <div class="pull-right">
-            <footer class="footer">
-                <p>My First bloggr web app using sailsjs</p>
-                <a href="">sjgmojica@voyagerinnovation.com</a>
-            </footer>
+          <footer class="footer">
+            <p>My First bloggr web app using sailsjs</p>
+            <a href="">sjgmojica@voyagerinnovation.com</a>
+          </footer>
         </div>
       </div>
   </body>
