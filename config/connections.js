@@ -20,7 +20,7 @@
  */
 
 module.exports.connections = {
-  /*
+  
   someMongodbServer: {
     adapter: 'sails-mongo',
     host: 'localhost',
@@ -28,8 +28,8 @@ module.exports.connections = {
     user: '',
     password: '',
     database: 'bloggrDB'
-  }
-  */
+  },
+  
   master: {
     adapter: "sails-disk"
   }

@@ -28,12 +28,13 @@ module.exports.models = {
   *                                                                          *
   ***************************************************************************/
   // migrate: 'alter'
-    /*
+    
     connection: "someMongodbServer",
     autoCreatedAt: false,
     autoUpdatedAt: false,
-    */
     connection: "master",
-    autoCreatedAt: false,
-    autoUpdatedAt: false,
+    //connection: "master",
+    //autoCreatedAt: false,
+    //autoUpdatedAt: false,
+    
 };
