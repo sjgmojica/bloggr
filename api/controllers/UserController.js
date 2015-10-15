@@ -38,7 +38,6 @@ module.exports = {
   },
 
   processLogin: function (req, res) {
-    //User.findOne({email: req.body.email, password: req.body.password}).exec(function (err, user) {
     User.findOne({email: req.body.email, password: req.body.password}, function foundUser (err, user) {
       if (err) {
         res.serverError(err);
@@ -46,7 +45,7 @@ module.exports = {
         res.ok({error: true, message: "The email and password you entered did not match our records. Please double-check and try again."});
       } else {
         req.session.user = user;
-        res.redirect('/home');
+        res.redirect("/home");
       }
     });
   },
@@ -68,7 +67,7 @@ module.exports = {
 
   logout: function (req, res) {
     req.session.destroy();
-    res.redirect('/');
+    res.redirect("/");
   },
 
   edit: function (req, res) {
@@ -76,7 +75,6 @@ module.exports = {
       if (err) {
         return res.serverError(err);
       }
-      console.log(user);
       res.view({user: user});
     });
   },
@@ -91,10 +89,9 @@ module.exports = {
         password : req.body.password})
     .exec(function updateProfile(err, user) {
       if (err) {
-        return res.serverError(err);
+        return res.ok({error: true, message: "All fields are required" });
       } 
       req.session.user = user[0];
-      console.log(req.session.user);
       res.ok({});
     });
   }

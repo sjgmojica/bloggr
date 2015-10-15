@@ -43,6 +43,8 @@ module.exports = {
   },
 
   update: function (req, res) {
+    console.log(req.body.blogTitle);
+    console.log(req.body.blogBody);
     var id = req.param("id", null);
     Blog.update({id: id}, 
       { title : req.body.blogTitle,
