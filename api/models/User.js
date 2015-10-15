@@ -6,9 +6,8 @@
 */
 
 module.exports = {
-  //schema: true,
-  //tableName: 'users',
-
+  schema: true,
+  tableName: 'users',
   attributes: {
     email: {
       type: "email",
@@ -19,7 +18,6 @@ module.exports = {
     password: {
       type: "string",
       required: true,
-      //maxLength: 6;
     },
 
     firstname:{

@@ -6,11 +6,11 @@
 */
 
 module.exports = {
-  //schema: true,
-  //tableName: 'blogs',
+  schema: true,
+  tableName: 'blogs',
   attributes: {
     title:{
-      type:'string', 
+      type:'string',
       required:true
     },
 
@@ -27,7 +27,7 @@ module.exports = {
     userId: {
       type:'string',
       required: true
-    }  
+    }   
   }
 };
 
