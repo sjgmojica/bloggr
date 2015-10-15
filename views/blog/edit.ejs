@@ -1,21 +1,21 @@
 <div class="container" style="padding-top: 50px;">
-    <form class="form-horizontal" role="form" action="/blog/update/<%= blog.id %>" method="POST" id="updateBlogForm">
-        <div class="form-group">
-            <div class="col-md-6">
-                <input type="text" class="form-control" value="<%= blog.title %>" name="blogTitle"/>
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-md-6">          
-                <textarea rows=10 type="text" class="form-control" name="blogBody"/><%= blog.body %></textarea>
-            </div>
-        </div>
-        <div class="form-group">        
-            <div class="col-sm-6">
-                <input type="submit" value="Update" id="updateBlogButton" class="btn btn-sm btn-primary btn-block"/>
-            </div>
-        </div>
-    </form>
+  <form class="form-horizontal" role="form" action="/blog/update/<%= blog.id %>" method="POST" id="updateBlogForm">
+    <div class="form-group">
+      <div class="col-md-6">
+        <input type="text" class="form-control" value="<%= blog.title %>" name="blogTitle"/>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-md-6">          
+        <textarea rows=10 type="text" class="form-control" name="blogBody"/><%= blog.body %></textarea>
+      </div>
+    </div>
+    <div class="form-group">        
+      <div class="col-sm-6">
+        <input type="submit" value="Update" id="updateBlogButton" class="btn btn-sm btn-primary btn-block"/>
+      </div>
+    </div>
+  </form>
 </div>
 
 <script>

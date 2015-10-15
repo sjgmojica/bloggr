@@ -1,86 +1,86 @@
 <div class="container" style="padding:50px 15px">
-    <div class="row">
-        <div class="col-sm-4" id="leftCol">
-            <div class="panel panel-default">
-                <div class="panel-body"> 
-                    <ul class="nav nav-stacked" id="sidebar">
-                        <li><img src="images/profile_pic.png" class="img-responsive" width="80" height="80"></li>
-                        <li><h4><%= req.session.user.firstname %></h4></li>
-                        <li><%- req.session.user.desc %></li>
-                    </ul>
-                </div>
-            </div>
+  <div class="row">
+    <div class="col-sm-4" id="leftCol">
+      <div class="panel panel-default">
+        <div class="panel-body"> 
+          <ul class="nav nav-stacked" id="sidebar">
+            <li><img src="images/profile_pic.png" class="img-responsive" width="80" height="80"></li>
+            <li><h4><%= req.session.user.firstname %></h4></li>
+            <li><%- req.session.user.desc %></li>
+          </ul>
         </div>
-        <div class="col-md-8">
-            <!--LOOP starts herere-->
-            <% blogs.forEach(function(blog) { %>
-                <% if(req.session.user.id == blog.userId) { %>
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                            <h4><%= blog.title %></h4>
-                            <p><%= user.firstname %></p>
-                            <p><%= blog.dt_post %></p>
-                            <p><%= blog.body %></p>
-                            <div class="pull-right">
-                                <a href="/blog/edit/<%= blog.id %>"><span class="glyphicon glyphicon-edit"></span></a></li>
-                                <a class="deleteBlog" id="del-<%= blog.id %>" href="/blog/delete/<%= blog.id %>"><span class="glyphicon glyphicon-trash"></span></a></li>
-                            </div>
-                        </div>
-                    </div>
-                <% } else { %>
-                    <% friends.forEach(function(friend) { %>
-                        <% if (friend.id != req.session.user.id && blog.userId == friend.id) { %>
-                            <div class="panel panel-default">
-                                <div class="panel-body">
-                                    <h3><%= blog.title %></h3>
-                                    <p><%= blog.dt_post %></p>
-                                    <p><%= friend.firstname %></p>
-                                    <p><%= blog.body %></p>
-                                </div>
-                            </div>
-                        <% } %>
-                    <% }); %>            
-                <% } %>        
-            <% }); %>
-            <!--Loop end herere-->    
-        </div>
+      </div>
     </div>
+    <div class="col-md-8">
+        <!--LOOP starts herere-->
+      <% blogs.forEach(function(blog) { %>
+        <% if(req.session.user.id == blog.userId) { %>
+          <div class="panel panel-default">
+            <div class="panel-body">
+              <h4><%= blog.title %></h4>
+              <p><%= user.firstname %></p>
+              <p><%= blog.dt_post %></p>
+              <p><%= blog.body %></p>
+              <div class="pull-right">
+                <a href="/blog/edit/<%= blog.id %>"><span class="glyphicon glyphicon-edit"></span></a></li>
+                <a class="deleteBlog" id="del-<%= blog.id %>" href="/blog/delete/<%= blog.id %>"><span class="glyphicon glyphicon-trash"></span></a></li>
+              </div>
+            </div>
+          </div>
+        <% } else { %>
+          <% friends.forEach(function(friend) { %>
+            <% if (friend.id != req.session.user.id && blog.userId == friend.id) { %>
+              <div class="panel panel-default">
+                <div class="panel-body">
+                  <h3><%= blog.title %></h3>
+                  <p><%= blog.dt_post %></p>
+                  <p><%= friend.firstname %></p>
+                  <p><%= blog.body %></p>
+                </div>
+              </div>
+            <% } %>
+          <% }); %>            
+        <% } %>        
+      <% }); %>
+      <!--Loop end herere-->    
+    </div>
+  </div>
 </div>
 
 <!-- Modal add blog-->
 <div class="modal fade" id="blogModal" role="dialog">
-    <div class="modal-dialog modal-md">
-        <!-- Modal login content -->
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Compose new blog</h4>
-            </div>
-            <div class="modal-body">
-                <% include ../blog/add %>
-            </div>
-        </div>
+  <div class="modal-dialog modal-md">
+    <!-- Modal login content -->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Compose new blog</h4>
+      </div>
+      <div class="modal-body">
+        <% include ../blog/add %>
+      </div>
     </div>
+  </div>
 </div>
 
 <script>
 $('.deleteBlog').off().on('click', function (evt) {
-    evt.preventDefault();
-    var id = this.id.split('-')[1];
-    console.log(id);
+  evt.preventDefault();
+  var id = this.id.split('-')[1];
+  console.log(id);
 
-    var result = $.ajax({
-        method: "DELETE",
-        type: "JSON",
-        url: "/blog/delete/" + id,
-        data: "",
-        success: function(response) {
-            window.location = '/user';
-        },
+  var result = $.ajax({
+    method: "DELETE",
+    type: "JSON",
+    url: "/blog/delete/" + id,
+    data: "",
+    success: function(response) {
+      window.location = '/user';
+    },
 
-        error: function(response) {
-            console.log("ERROR");
-        }
-    });
+    error: function(response) {
+      console.log("ERROR");
+    }
+  });
 });
 </script>
