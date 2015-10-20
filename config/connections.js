@@ -21,16 +21,13 @@
 
 module.exports.connections = {
   
-  someMongodbServer: {
+  master: {
     adapter: 'sails-mongo',
     host: 'localhost',
     port: 27017,
     user: '',
     password: '',
     database: 'bloggrDB'
-  },
-  
-  master: {
-    adapter: "sails-disk"
   }
+
 };
