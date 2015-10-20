@@ -180,7 +180,7 @@ describe(TEST_NAME, function() {
   describe("create user", function(){
      describe(".create()", function() {
       it("should be successful 2", function(done) {
-        User.create({email: "user@abc.com", password: "test123", firstname: "sarah", lastname: "mojica", desc: "food lover", join_dt: "October-09-2015", join_tm: "05:48:10"}, function(err, user) {
+        User.create({email: "user1@abc.com", password: "test123", firstname: "sarah", lastname: "mojica", desc: "food lover", join_dt: "October-09-2015", join_tm: "05:48:10"}, function(err, user) {
           expect(err).to.not.exist;
           expect(user).to.exist;
           done();
