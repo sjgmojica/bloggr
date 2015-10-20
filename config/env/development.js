@@ -13,7 +13,7 @@
 module.exports = {
   port: 8006,
   models: {
-      connection: 'someMongodbServer'
+      connection: 'master'
   }
 
 };
