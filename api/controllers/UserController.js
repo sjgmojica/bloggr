@@ -58,7 +58,7 @@ module.exports = {
       if (err) {
         res.serverError();
       } else {
-        User.find(function foundUsers (err, users) {
+        User.find(function (err, users) {
           if (err) {
             return res.serverError();
           }
