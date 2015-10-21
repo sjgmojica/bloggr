@@ -28,7 +28,7 @@ describe(TEST_NAME, function() {
           expect(res.headers.location).to.be.eq("/blog");
           expect(res.redirect).to.be.eq(true);
           expect(res.clientError).to.be.eq(false);
-          done();
+          done(err);
         });
     });
      
@@ -43,7 +43,7 @@ describe(TEST_NAME, function() {
           expect(res.headers.location).to.be.eq("/blog");
           expect(res.redirect).to.be.eq(true);
           expect(res.clientError).to.be.eq(false);
-          done();
+          done(err);
         });
     });
   });
@@ -58,7 +58,7 @@ describe(TEST_NAME, function() {
           expect(res).to.exist;
           expect(res.redirect).to.be.eq(false);
           expect(res.clientError).to.be.eq(false);
-          done();
+          done(err);
         });
     });
   });
@@ -74,7 +74,7 @@ describe(TEST_NAME, function() {
           expect(res).to.exist;
           expect(res.redirect).to.be.eq(false);
           expect(res.clientError).to.be.eq(false);
-          done();
+          done(err);
         });
     });
   });
@@ -91,15 +91,9 @@ describe(TEST_NAME, function() {
           expect(res).to.exist;
           expect(res.redirect).to.be.eq(false);
           expect(res.clientError).to.be.eq(false);
-          done();
+          done(err);
         });
     });
-    /*
-    it("should be error if no title", function (done) {
-      var blog = factory.build("blog3");
-      request.put("")
-    });
-*/
   });
 
   // -- delete blog
@@ -115,7 +109,7 @@ describe(TEST_NAME, function() {
           expect(res.headers.location).to.be.eq("/user");
           expect(res.redirect).to.be.eq(true);
           expect(res.clientError).to.be.eq(false);
-          done();
+          done(err);
         });
     });
   });
@@ -131,7 +125,7 @@ describe(TEST_NAME, function() {
           expect(res.header.location).to.be.eq("/");
           expect(res.redirect).to.be.eq(true);
           expect(res.clientError).to.be.eq(false);
-          done();
+          done(err);
         });
     });
   });

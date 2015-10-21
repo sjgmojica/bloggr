@@ -12,7 +12,7 @@ describe(TEST_NAME, function() {
           expect(res).to.exist;
           expect(res.redirect).to.be.eq(false);
           expect(res.clientError).to.be.eq(false);
-          done();
+          done(err);
         });
     });
   });
@@ -28,7 +28,7 @@ describe(TEST_NAME, function() {
         .end(function (err, res) {
           expect(err).to.not.exist;
           expect(res).to.exist;
-          done();
+          done(err);
         });
     });
 
@@ -40,7 +40,7 @@ describe(TEST_NAME, function() {
           expect(res).to.exist;
           expect(res.redirect).to.be.eq(false);
           expect(res.clientError).to.be.eq(false);
-          done();
+          done(err);
         });
     });
     it("email already exist", function (done) {
@@ -53,7 +53,7 @@ describe(TEST_NAME, function() {
           expect(err).to.not.exist;
           expect(res).to.exist;
           expect(res.body.error).to.be.eq(true);
-          done();
+          done(err);
         });
     });
     it("should be error if no fname", function (done) {
@@ -65,7 +65,7 @@ describe(TEST_NAME, function() {
           expect(err).to.not.exist;
           expect(res).to.exist;
           expect(res.body.error).to.be.eq("E_VALIDATION");
-          done();
+          done(err);
         });
     });
     it("should be error if no lname", function (done) {
@@ -77,7 +77,7 @@ describe(TEST_NAME, function() {
           expect(err).to.not.exist;
           expect(res).to.exist;
           expect(res.body.error).to.be.eq("E_VALIDATION");
-          done();
+          done(err);
         });
     });
     it("should be error if no desc", function (done) {
@@ -89,7 +89,7 @@ describe(TEST_NAME, function() {
           expect(err).to.not.exist;
           expect(res).to.exist;
           expect(res.body.error).to.be.eq("E_VALIDATION");
-          done();
+          done(err);
         });
     });
   });
@@ -107,7 +107,7 @@ describe(TEST_NAME, function() {
           expect(res.headers.location).to.be.eq("/home");
           expect(res.redirect).to.be.eq(true);
           expect(res.clientError).to.be.eq(false);
-          done();
+          done(err);
         });
     });
     it("should be error if user or password did not exist", function (done) {
@@ -122,7 +122,7 @@ describe(TEST_NAME, function() {
           expect(err).to.not.exist;
           expect(res).to.exist;
           expect(res.body.error).to.be.eq(true);
-          done();
+          done(err);
         });
     });
   });
@@ -137,7 +137,7 @@ describe(TEST_NAME, function() {
           expect(res).to.exist;
           expect(res.redirect).to.be.eq(false);
           expect(res.clientError).to.be.eq(false);
-          done();
+          done(err);
         });
     });
   });
@@ -153,7 +153,7 @@ describe(TEST_NAME, function() {
           expect(res).to.exist;
           expect(res.redirect).to.be.eq(false);
           expect(res.clientError).to.be.eq(false);
-          done();
+          done(err);
         });     
 
     });
@@ -172,7 +172,7 @@ describe(TEST_NAME, function() {
           expect(res).to.exist;
           expect(res.redirect).to.be.eq(false);
           expect(res.clientError).to.be.eq(false);
-          done();
+          done(err);
         });
     });
     
@@ -183,13 +183,12 @@ describe(TEST_NAME, function() {
         .send(user)
         .expect(200)
         .end(function (err, res) {
-          //console.log(res);
           console.log(res.body.message);
           expect(err).to.not.exist;
           expect(res).to.exist;
           expect(res.redirect).to.be.eq(false);
           expect(res.clientError).to.be.eq(false);
-          done();
+          done(err);
         });
     });
   });
@@ -205,7 +204,7 @@ describe(TEST_NAME, function() {
           expect(res.header.location).to.be.eq("/");
           expect(res.redirect).to.be.eq(true);
           expect(res.clientError).to.be.eq(false);
-          done();
+          done(err);
         });
     });
   });
