@@ -10,6 +10,7 @@ var date    = new Date();
 var frmt_dt = moment(date).format("ddd YYYY-MM-DD h:mm:ss a");
 
 module.exports = {
+  // -- profile page
   index : function (req, res) {
     Blog.find({userId : req.session.user.id}).sort({$natural : -1}).exec(function (err, blogs) {
       if (err) {
@@ -19,13 +20,14 @@ module.exports = {
     });
   },
 
+  // -- new blog
   create: function (req, res) {
     Blog.create({
       title: req.body.blogTitle,
       body: req.body.blogBody,
       dt_post: frmt_dt,
       userId: req.session.user.id
-    }, function blogCreated (err, blog) {
+    }, function (err, blog) {
       if(err) {
         return res.redirect("/blog");
       }
@@ -33,8 +35,9 @@ module.exports = {
     });
   },
 
+  // -- edit blog
   edit: function (req, res) {
-    Blog.findOne(req.param("id"), function foundBlog (err, blog) {
+    Blog.findOne(req.param("id"), function (err, blog) {
       if (err) {
         return res.serverError();
       }
@@ -42,12 +45,13 @@ module.exports = {
     });
   },
 
+  // -- update blog
   update: function (req, res) {
     var id = req.param("id", null);
     Blog.update({id: id}, 
       { title : req.body.blogTitle,
       body : req.body.blogBody
-    }).exec(function updateBlog (err, blog) {
+    }).exec(function (err, blog) {
       if (err) {
         return res.serverError(err);
       }
@@ -55,6 +59,7 @@ module.exports = {
     });
   },
 
+  // -- delete blog
   delete: function (req, res) {
     var id = req.param("id", null);
     Blog.findOne(id).exec(function (err, blog) {

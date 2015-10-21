@@ -10,6 +10,7 @@ var frmt_dt = moment(date).format('MMMM-DD-YYYY');
 var frmt_tm = moment(date).format('h:mm:ss');
 
 module.exports = {
+  // -- signup
   create: function (req, res) {
     User.findOne({email: req.body.email}).exec(function (err, user) {
       if (err) {
@@ -37,8 +38,9 @@ module.exports = {
     });
   },
 
+  // -- login
   processLogin: function (req, res) {
-    User.findOne({email: req.body.email, password: req.body.password}, function foundUser (err, user) {
+    User.findOne({email: req.body.email, password: req.body.password}, function (err, user) {
       if (err) {
         res.serverError(err);
       } else if (user === undefined) {
@@ -50,8 +52,9 @@ module.exports = {
     });
   },
 
+  // -- homepage after sucessful login/timeline
   index: function (req, res) { 
-    Blog.find({$query: {}, $orderby: {$natural : -1}}, function foundBlogs (err, blogs) {
+    Blog.find({$query: {}, $orderby: {$natural : -1}}, function (err, blogs) {
       if (err) {
         res.serverError();
       } else {
@@ -65,13 +68,15 @@ module.exports = {
     });
   },
 
+  // -- logout
   logout: function (req, res) {
     req.session.destroy();
     res.redirect("/");
   },
 
+  // -- edit user profile page
   edit: function (req, res) {
-    User.findOne(req.param('id'), function foundUser (err, user) {
+    User.findOne(req.param('id'), function (err, user) {
       if (err) {
         return res.serverError(err);
       }
@@ -79,6 +84,7 @@ module.exports = {
     });
   },
 
+  // -- update user profile page
   update: function (req, res) {
     var id = req.param("id", null);
     User.update({id: id},
@@ -87,7 +93,7 @@ module.exports = {
         desc : req.body.desc,
         email : req.body.email,
         password : req.body.password})
-    .exec(function updateProfile(err, user) {
+    .exec(function (err, user) {
       if (err) {
         return res.ok({error: true, message: "All fields are required" });
       } 
